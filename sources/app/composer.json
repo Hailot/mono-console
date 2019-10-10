@@ -1,0 +1,22 @@
+{
+    "name": "hailot/mono-console",
+    "description": "mono solutions code-test",
+    "authors": [
+        {
+            "name": "Jesper Carlsen",
+            "email": "jesper@bach-carlsen.dk"
+        }
+    ],
+    "minimum-stability": "dev",
+    "require": {
+        "php": ">=7.1.0"
+    },
+    "autoload": {
+        "psr-0": {
+            "HelloWorld": "src/"
+        },
+        "psr-4": {
+            "Mono\\":"src/"
+          }
+    }
+}
