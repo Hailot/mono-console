@@ -12,18 +12,20 @@ if($db->connect_error){
 
 }
 
+//Open I/O Stream
 $stdin = fopen('php://stdin', 'r');
-$yes   = false;
+//variable for continous running
+$running   = false;
 
-while (!$yes)
+while (!$running)
 {
 	echo 'y or n? ';
 
 	$input = trim(fgets($stdin));
 
-	if ($input == 'y')
+	if ($input == 'exit')
 	{
-		exit('YES!!');
+		exit('Exit Application !!');
 	}
 }
 
