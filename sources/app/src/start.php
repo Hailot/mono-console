@@ -12,22 +12,19 @@ if($db->connect_error){
 
 }
 
-print ("Hello World from a console app made with ExeOutput for PHP!\n");
+$stdin = fopen('php://stdin', 'r');
+$yes   = false;
 
+while (!$yes)
+{
+	echo 'y or n? ';
 
+	$input = trim(fgets($stdin));
 
-//print (exo_get_protstring('str1'));
-
-
-
-fputs(STDOUT, "\nThe Amazing Favourite Colour Script\n");
-
-    fputs(STDOUT, "What is your favourite colour? ");
-
-
-
-    $sometext = strtolower(trim(fgets(STDIN, 256)));
-
-    fputs(STDOUT, "Your favourite colour is $sometext!\n\n");
+	if ($input == 'y')
+	{
+		exit('YES!!');
+	}
+}
 
 ?>
