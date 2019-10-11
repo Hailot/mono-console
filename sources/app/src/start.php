@@ -1,5 +1,8 @@
 <?php
 // Autoload files using the Composer autoloader.
+
+use Mono\CommandHandler;
+
 require_once __DIR__ . '/../vendor/autoload.php';
 
 require_once ('db.info.php');
@@ -19,14 +22,16 @@ $running   = false;
 
 while (!$running)
 {
-	echo 'y or n? ';
+	echo 'Please enter command! ';
 
 	$input = trim(fgets($stdin));
+	$commandHandler = new CommandHandler($input);
+	$commandHandler->handle();
+	
+	
 
-	if ($input == 'exit')
-	{
-		exit('Exit Application !!');
-	}
 }
+
+
 
 ?>

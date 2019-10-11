@@ -12,10 +12,10 @@ if($db->connect_error){
 
 }
 
-// sql to create table
-$sql = "CREATE TABLE users (
+// sql to create users table
+$sql = "CREATE TABLE IF NOT EXISTS users (
 id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
-name VARCHAR(60) NOT NULL
+name VARCHAR(60) NOT NULL UNIQUE
 )";
 
 if ($db->query($sql) === TRUE) {
@@ -23,5 +23,40 @@ if ($db->query($sql) === TRUE) {
 } else {
     echo "Error creating table: " . $db->error;
 }
+
+//sql to create table messages
+$sql = 'CREATE TABLE IF NOT EXISTS messages (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    message TEXT NOT NULL,
+    user_id INT UNSIGNED,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE  
+    )';
+
+
+if ($db->query($sql) === TRUE) {
+    echo "Table messages created successfully";
+} else {
+    echo "Error creating table: " . $db->error;
+}
+
+//sql to create subscriptions table
+$sql = "CREATE TABLE IF NOT EXISTS subscriptions (
+    id INT(6) UNSIGNED AUTO_INCREMENT PRIMARY KEY,
+    user_id INT UNSIGNED,
+    user_sub_id INT UNSIGNED,
+    FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE,
+    FOREIGN KEY (user_sub_id) REFERENCES users(id) ON DELETE CASCADE 
+    )";
+
+
+if ($db->query($sql) === TRUE) {
+    echo "Table subscriptions created successfully";
+} else {
+    echo "Error creating table: " . $db->error;
+}    
+
+
+
 
 ?>

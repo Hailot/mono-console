@@ -4,7 +4,7 @@ namespace Mono\Models;
 
 use \mysqli;
 	
-class User
+class Subscription
 { 
 
 	// **********************
@@ -13,7 +13,9 @@ class User
 
 	private $id;   // KEY ATTR. WITH AUTOINCREMENT	
 	
-	private $name;
+	private $user_id;
+
+	private $user_sub_id;
 
 	private $db; 
 	
@@ -34,41 +36,22 @@ class User
 		$this->id = $id;
 
 
-		$sql = "SELECT * FROM users WHERE id = '".$this->id."'";
+		$sql = "SELECT * FROM subscriptions WHERE id = '".$this->id."'";
 		$result =  $this->db->query($sql) or die($this->db->error." <br/> Error: ".basename(__FILE__, ".php")." @ line ".__LINE__);
 		if($result && $result->num_rows > 0)
 		{
 			$row = $result->fetch_object();
 
 			$this->id = $row->id;
-			$this->name = $row->name;
-		
+			$this->user_id = $row->user_id;
+			$this->user_sub_id = $row->user_sub_id;
+
 
 			return true;
 		}
 		return false;
 	}
 
-	public function loadFromName(mysqli $db, $name)
-	{
-		$this->db = $db;
-		$this->name = strtolower($name);
-
-
-		$sql = "SELECT * FROM users WHERE name = '".$this->name."'";
-		$result =  $this->db->query($sql) or die($this->db->error." <br/> Error: ".basename(__FILE__, ".php")." @ line ".__LINE__);
-		if($result && $result->num_rows > 0)
-		{
-			$row = $result->fetch_object();
-
-			$this->id = $row->id;
-			$this->name = $row->name;
-		
-
-			return true;
-		}
-		return false;
-	}
 
 
 	// **********************
@@ -76,7 +59,8 @@ class User
 	// **********************
 
 	public function get_id()							{	return $this->id;							}
-	public function get_name()				            {	return ucfirst($this->name);				}
+	public function get_user_id()				            {	return $this->user_id;				}
+	public function get_user_sub_id()				            {	return $this->user_sub_id;				}
 
 
 	// **********************
@@ -84,8 +68,24 @@ class User
 	// **********************
 	public function set_db($db) 					{	$this->db = $db;	}
 	public function set_id($val)					{	$this->id						=	 $val;	}
-	public function set_name($val)			        {	$this->name			=	 $val;	}
+	public function set_user_id($val)			        {	$this->user_id			=	 $val;	}
+	public function set_user_sub_id($val)			        {	$this->user_sub_id			=	 $val;	}
 
+
+    // **********************
+    // INSERT
+    // **********************
+
+    public function create(mysqli $db)
+    {
+        $this->db = $db;
+        $this->id = ""; // clear key for autoincrement
+
+        $sql = "INSERT INTO subscriptions ( user_id,user_sub_id ) VALUES ( '".$this->user_id."','".$this->user_sub_id."')";
+        $result = $this->db->query($sql) or die($this->db->error." <br/> Error: ".basename(__FILE__, ".php")." @ line ".__LINE__);
+        $this->id = $this->db->insert_id;
+
+    }
 
 	// **********************
 	// DELETE
@@ -93,7 +93,7 @@ class User
 
 	public function delete()
 	{
-		$sql = "DELETE FROM users WHERE id = '".$this->id."'";
+		$sql = "DELETE FROM subscriptions WHERE id = '".$this->id."'";
 		$result = $this->db->query($sql) or die($this->db->error." <br/> Error: ".basename(__FILE__, ".php")." @ line ".__LINE__);
 	}
 
@@ -104,7 +104,7 @@ class User
 
 	public function save_info()
 	{
-		$sql = " UPDATE users SET  name = '".$this->name."' WHERE id = '".$this->id."' ";
+		$sql = " UPDATE subscriptions SET  user_id = '".$this->user_id."',user_sub_id = '".$this->user_sub_id."' WHERE id = '".$this->id."' ";
 		$result = $this->db->query($sql) or die($this->db->error." <br/> Error: ".basename(__FILE__, ".php")." @ line ".__LINE__);
 
 	}

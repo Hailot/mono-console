@@ -16,7 +16,7 @@
             "src/"
         ],
         "psr-0": {
-            "HelloWorld": "src/"
+            "Mono": "src/"
         },
         "psr-4": {
             "Mono\\":"src/"
