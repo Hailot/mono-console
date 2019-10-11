@@ -44,7 +44,7 @@ class UserController
         /** @var Message $message */
         $now = new \DateTime();
         foreach ($messages as $message){
-            echo $message->get_message()." (".$message->get_time_elapsed_string().") </br>";
+            echo $message->get_message()." (".$message->get_time_elapsed_string().") \n";
         }
     }
 
