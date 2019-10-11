@@ -20,14 +20,14 @@ class CommandHandler
     //This function converts user input to commands
     public function handle(){
 
-        $userName = $this->before(' ',$this->inputString);
+        $userName = Utils::before(' ',$this->inputString);
         if(empty($userName)){
             $userName = $this->inputString;
         }
 
-        $command = $this->before(' ', $this->after($userName.' ',$this->inputString));
+        $command = Utils::before(' ', Utils::after($userName.' ',$this->inputString));
 
-        $attribute = $this->after($command." ",$this->inputString);
+        $attribute = Utils::after($command." ",$this->inputString);
 
 
 
@@ -92,19 +92,5 @@ class CommandHandler
 
     }
 
-    /**
-     * @param $search
-     * @param $inthat
-     * @return false|string
-     */
-    public function before ($search, $inthat)
-    {
-        return substr($inthat, 0, strpos($inthat, $search));
-    }
 
-    function after ($search, $inthat)
-    {
-        if (!is_bool(strpos($inthat, $search)))
-            return substr($inthat, strpos($inthat,$search)+strlen($search));
-    }
 }
