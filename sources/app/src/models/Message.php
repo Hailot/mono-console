@@ -5,7 +5,7 @@ namespace Mono\Models;
 use DateTime;
 use \mysqli;
 	
-class Message
+class Message extends DbConnect
 { 
 
 	// **********************
@@ -30,7 +30,8 @@ class Message
         								
 
 	public function __construct() {
-
+        $dbcon = new parent();
+        $this->db = $dbcon->connect();
 	}
 
 	public function load(mysqli $db, $id)
@@ -118,9 +119,9 @@ class Message
     // INSERT
     // **********************
 
-    public function create(mysqli $db)
+    public function create()
     {
-        $this->db = $db;
+
         $this->id = ""; // clear key for autoincrement
 
         $sql = "INSERT INTO messages ( message,user_id ) VALUES ( '".$this->message."','".$this->user_id."')";

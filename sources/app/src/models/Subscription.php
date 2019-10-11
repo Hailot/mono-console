@@ -4,7 +4,7 @@ namespace Mono\Models;
 
 use \mysqli;
 	
-class Subscription
+class Subscription extends DbConnect
 { 
 
 	// **********************
@@ -27,12 +27,12 @@ class Subscription
         								
 
 	public function __construct() {
-		
+        $dbcon = new parent();
+        $this->db = $dbcon->connect();
 	}
 
 	public function load(mysqli $db, $id)
 	{
-		$this->db = $db;
 		$this->id = $id;
 
 
@@ -76,9 +76,8 @@ class Subscription
     // INSERT
     // **********************
 
-    public function create(mysqli $db)
+    public function create()
     {
-        $this->db = $db;
         $this->id = ""; // clear key for autoincrement
 
         $sql = "INSERT INTO subscriptions ( user_id,user_sub_id ) VALUES ( '".$this->user_id."','".$this->user_sub_id."')";

@@ -4,6 +4,7 @@
 namespace Mono\Controllers;
 
 
+use Mono\Models\DbConnect;
 use Mono\Models\Message;
 use Mono\Models\User;
 use mysqli;
@@ -25,8 +26,10 @@ class UserController
         return $user;
     }
 
-    public function getWall(mysqli $db,$userId)
+    public function getWall($userId)
     {
+        $dbcon= new DbConnect();
+        $db = $dbcon->connect();
         $sql = "select id from messages WHERE user_id = " . $userId;
 
         $result = $db->query($sql);
@@ -43,13 +46,15 @@ class UserController
 
         /** @var Message $message */
         $now = new \DateTime();
-        foreach ($messages as $message){
-            echo $message->get_message()." (".$message->get_time_elapsed_string().") \n";
+        foreach ($messages as $message) {
+            echo $message->get_message() . " (" . $message->get_time_elapsed_string() . ") \n";
         }
     }
 
-    public function getWallWithSubscriptions(mysqli $db, $userId)
+    public function getWallWithSubscriptions($userId)
     {
+        $dbcon= new DbConnect();
+        $db = $dbcon->connect();
         $userids = array();
         $userids[] = $userId;
         //Then we find all the user ids of subscribed users

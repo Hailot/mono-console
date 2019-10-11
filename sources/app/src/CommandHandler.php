@@ -64,19 +64,19 @@ class CommandHandler
         switch($command){
             //Command: Display Wall
             case 'read':
-                $userController->getWall($db,$user->get_id());
+                $userController->getWall($user->get_id());
                 break;
             //Command: Create Message
             case "->":
                 //call message controller
                 $messageController = new MessageController($user);
                 //We know that the third entry in the array will contain the message string so we pass that to the method
-                $messageController->postMessage($db,$attribute);
+                $messageController->postMessage($attribute);
                 break;
             //Command: Subscribe to a user
             case "follows":
                 $subscriptionController = new SubscriptionController($user);
-                $subscriptionController->subscribeToUser($db,$attribute);
+                $subscriptionController->subscribeToUser($attribute);
                 break;
             //Command: get wall with subscriptions
             case "wall":

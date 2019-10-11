@@ -24,11 +24,11 @@ class MessageController
     /**
      * @param string $messageString
      */
-    public function postMessage(mysqli $db,string $messageString)
+    public function postMessage(string $messageString)
     {
         $message = new Message();
         $message->set_message($messageString);
         $message->set_user_id($this->user->get_id());
-        $message->create($db);
+        $message->create();
     }
 }

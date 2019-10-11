@@ -21,17 +21,17 @@ class SubscriptionController
         $this->user = $user;
     }
 
-    public function subscribeToUser(\mysqli $db,string $subscribedUsersname)
+    public function subscribeToUser(string $subscribedUsersname)
     {
         //We Start by getting the user we wish to subscribe to
         $subscribedUser = new User();
-        $subscribedUser->loadFromName($db,$subscribedUsersname);
+        $subscribedUser->loadFromName($subscribedUsersname);
 
         //We then create the subscription
         $subscription = new Subscription();
         $subscription->set_user_id($this->user->get_id());
         $subscription->set_user_sub_id($subscribedUser->get_id());
-        $subscription->create($db);
+        $subscription->create();
 
         //Finally we create a message for the that we now follow that user
         $message = new Message();
