@@ -18,10 +18,10 @@ class UserController
     {
     }
 
-    public function getUserFromName(mysqli $db,$name)
+    public function getUserFromName($name)
     {
         $user = new User();
-        $user->loadFromName($db,$name);
+        $user->loadFromName($name);
         return $user;
     }
 

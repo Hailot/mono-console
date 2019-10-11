@@ -26,6 +26,9 @@ class CommandHandler
         }
 
         $command = Utils::before(' ', Utils::after($userName.' ',$this->inputString));
+        if(empty($command)){
+            $command = 'read';
+        }
 
         $attribute = Utils::after($command." ",$this->inputString);
 
@@ -33,7 +36,7 @@ class CommandHandler
 
         require_once __DIR__ . '/../vendor/autoload.php';
 
-        require_once ('db.info.php');
+        require_once('db.info.php');
 
         $db = new mysqli ( DB_HOST, DB_USER, DB_PASS, DB_BASE );
 
@@ -49,7 +52,7 @@ class CommandHandler
          * Therefor we can retrieve the user trough the usercontroller
          */
         $userController = new UserController();
-        $user = $userController->getUserFromName($db,$userName);
+        $user = $userController->getUserFromName($userName);
 
 
 
@@ -60,7 +63,7 @@ class CommandHandler
 
         switch($command){
             //Command: Display Wall
-            case '':
+            case 'read':
                 $userController->getWall($db,$user->get_id());
                 break;
             //Command: Create Message
@@ -82,6 +85,7 @@ class CommandHandler
 
             case "exit":
                 exit('Exit Application !!');
+                break;
 
 
         }

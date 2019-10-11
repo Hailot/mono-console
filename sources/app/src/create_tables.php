@@ -2,7 +2,7 @@
 // Autoload files using the Composer autoloader.
 require_once __DIR__ . '/../vendor/autoload.php';
 
-require_once ('db.info.php');
+require_once('db.info.php');
 
 $db = new mysqli ( DB_HOST, DB_USER, DB_PASS, DB_BASE );
 

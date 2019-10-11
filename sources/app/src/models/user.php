@@ -4,7 +4,7 @@ namespace Mono\Models;
 
 use \mysqli;
 	
-class User
+class User extends DbConnect
 { 
 
 	// **********************
@@ -25,12 +25,12 @@ class User
         								
 
 	public function __construct() {
-		
+		$dbcon = new parent();
+		$this->db = $dbcon->connect();
 	}
 
-	public function load(mysqli $db, $id)
+	public function load($id)
 	{
-		$this->db = $db;
 		$this->id = $id;
 
 
@@ -49,9 +49,9 @@ class User
 		return false;
 	}
 
-	public function loadFromName(mysqli $db, $name)
+	public function loadFromName($name)
 	{
-		$this->db = $db;
+
 		$this->name = strtolower($name);
 
 
