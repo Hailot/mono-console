@@ -20,6 +20,17 @@ class CommandHandler
     //This function converts user input to commands
     public function handle(){
 
+        //Command to exit application
+        if($this->inputString === 'exit'){
+            exit('Exit Application !!');
+        }
+
+        /*
+         * Get Username from inputstring ,
+         * We Assume A username does not contain spaces
+         * Finally if variable is empty after search(substr),
+         * we assume full string to be username
+         */
         $userName = Utils::before(' ',$this->inputString);
         if(empty($userName)){
             $userName = $this->inputString;
@@ -31,21 +42,6 @@ class CommandHandler
         }
 
         $attribute = Utils::after($command." ",$this->inputString);
-
-
-
-        require_once __DIR__ . '/../vendor/autoload.php';
-
-        require_once('db.info.php');
-
-        $db = new mysqli ( DB_HOST, DB_USER, DB_PASS, DB_BASE );
-
-
-        if($db->connect_error){
-            die("Connection failed: " . $db->connect_error);
-
-        }
-
 
         /*
          * We now have the username
@@ -63,7 +59,7 @@ class CommandHandler
 
         switch($command){
             //Command: Display Wall
-            case 'read':
+            case "read":
                 $userController->getWall($user->get_id());
                 break;
             //Command: Create Message
@@ -80,11 +76,7 @@ class CommandHandler
                 break;
             //Command: get wall with subscriptions
             case "wall":
-                $userController->getWallWithSubscriptions();
-                break;
-
-            case "exit":
-                exit('Exit Application !!');
+                $userController->getWallWithSubscriptions($user->get_id());
                 break;
 
 

@@ -30,7 +30,7 @@ class UserController
     {
         $dbcon= new DbConnect();
         $db = $dbcon->connect();
-        $sql = "select id from messages WHERE user_id = " . $userId;
+        $sql = "select id from messages WHERE user_id = " . $userId." ORDER BY created_at DESC";
 
         $result = $db->query($sql);
         $messages = array();
@@ -38,7 +38,7 @@ class UserController
         while($row = $result->fetch_object()) {
 
            $message = new Message();
-           $message->load($db,$row->id);
+           $message->load($row->id);
 
             $messages[] = $message;
         }

@@ -37,6 +37,6 @@ class SubscriptionController
         $message = new Message();
         $message->set_user_id($this->user->get_id());
         $message->set_message($this->user->get_name().' now follows '.$subscribedUser->get_name());
-        $message->create($db);
+        $message->create();
     }
 }

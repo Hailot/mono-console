@@ -34,9 +34,8 @@ class Message extends DbConnect
         $this->db = $dbcon->connect();
 	}
 
-	public function load(mysqli $db, $id)
+	public function load($id)
 	{
-		$this->db = $db;
 		$this->id = $id;
 
 
