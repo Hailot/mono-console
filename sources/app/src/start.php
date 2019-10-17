@@ -1,9 +1,10 @@
 <?php
 // Autoload files using the Composer autoloader.
+require_once __DIR__ . '/../vendor/autoload.php';
 
 use Mono\CommandHandler;
 
-require_once __DIR__ . '/../vendor/autoload.php';
+
 
 //Open I/O Stream
 $stdin = fopen('php://stdin', 'r');

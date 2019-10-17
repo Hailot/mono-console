@@ -31,12 +31,14 @@ class CommandHandler
          * Finally if variable is empty after search(substr),
          * we assume full string to be username
          */
+
         $userName = Utils::before(' ',$this->inputString);
         if(empty($userName)){
             $userName = $this->inputString;
         }
 
-        $command = Utils::before(' ', Utils::after($userName.' ',$this->inputString));
+        //$command = Utils::before(' ', Utils::after($userName.' ',$this->inputString));
+        $command = Utils::after($userName.' ',$this->inputString);
         if(empty($command)){
             $command = 'read';
         }
@@ -49,7 +51,6 @@ class CommandHandler
          */
         $userController = new UserController();
         $user = $userController->getUserFromName($userName);
-
 
 
         /*

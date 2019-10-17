@@ -6,6 +6,15 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
+    'Mono\\CommandHandler' => $baseDir . '/src/CommandHandler.php',
+    'Mono\\Controllers\\MessageController' => $baseDir . '/src/Controllers/MessageController.php',
+    'Mono\\Controllers\\SubscriptionController' => $baseDir . '/src/Controllers/SubscriptionController.php',
+    'Mono\\Controllers\\UserController' => $baseDir . '/src/Controllers/UserController.php',
+    'Mono\\Models\\DbConnect' => $baseDir . '/src/Models/DbConnect.php',
+    'Mono\\Models\\Message' => $baseDir . '/src/Models/Message.php',
+    'Mono\\Models\\Subscription' => $baseDir . '/src/Models/Subscription.php',
+    'Mono\\Models\\User' => $baseDir . '/src/Models/User.php',
+    'Mono\\Utils' => $baseDir . '/src/Utils.php',
     'PHPUnit\\Exception' => $vendorDir . '/phpunit/phpunit/src/Exception.php',
     'PHPUnit\\Framework\\Assert' => $vendorDir . '/phpunit/phpunit/src/Framework/Assert.php',
     'PHPUnit\\Framework\\AssertionFailedError' => $vendorDir . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',

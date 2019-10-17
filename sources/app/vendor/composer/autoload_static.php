@@ -28,10 +28,6 @@ class ComposerStaticInitcc65210592013f2b141b619408cb3f63
         array (
             'Prophecy\\' => 9,
         ),
-        'M' => 
-        array (
-            'Mono\\' => 5,
-        ),
         'D' => 
         array (
             'Doctrine\\Instantiator\\' => 22,
@@ -58,10 +54,6 @@ class ComposerStaticInitcc65210592013f2b141b619408cb3f63
         array (
             0 => __DIR__ . '/..' . '/phpspec/prophecy/src/Prophecy',
         ),
-        'Mono\\' => 
-        array (
-            0 => __DIR__ . '/../..' . '/src',
-        ),
         'Doctrine\\Instantiator\\' => 
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
@@ -73,9 +65,9 @@ class ComposerStaticInitcc65210592013f2b141b619408cb3f63
     );
 
     public static $prefixesPsr0 = array (
-        'H' => 
+        'M' => 
         array (
-            'HelloWorld' => 
+            'Mono' => 
             array (
                 0 => __DIR__ . '/../..' . '/src',
             ),
@@ -83,6 +75,15 @@ class ComposerStaticInitcc65210592013f2b141b619408cb3f63
     );
 
     public static $classMap = array (
+        'Mono\\CommandHandler' => __DIR__ . '/../..' . '/src/CommandHandler.php',
+        'Mono\\Controllers\\MessageController' => __DIR__ . '/../..' . '/src/Controllers/MessageController.php',
+        'Mono\\Controllers\\SubscriptionController' => __DIR__ . '/../..' . '/src/Controllers/SubscriptionController.php',
+        'Mono\\Controllers\\UserController' => __DIR__ . '/../..' . '/src/Controllers/UserController.php',
+        'Mono\\Models\\DbConnect' => __DIR__ . '/../..' . '/src/Models/DbConnect.php',
+        'Mono\\Models\\Message' => __DIR__ . '/../..' . '/src/Models/Message.php',
+        'Mono\\Models\\Subscription' => __DIR__ . '/../..' . '/src/Models/Subscription.php',
+        'Mono\\Models\\User' => __DIR__ . '/../..' . '/src/Models/User.php',
+        'Mono\\Utils' => __DIR__ . '/../..' . '/src/Utils.php',
         'PHPUnit\\Exception' => __DIR__ . '/..' . '/phpunit/phpunit/src/Exception.php',
         'PHPUnit\\Framework\\Assert' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Assert.php',
         'PHPUnit\\Framework\\AssertionFailedError' => __DIR__ . '/..' . '/phpunit/phpunit/src/Framework/Exception/AssertionFailedError.php',

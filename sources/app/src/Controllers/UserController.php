@@ -66,18 +66,21 @@ class UserController
         }
 
 
-        $sql = "select * from messages WHERE user_id IN " . $userids;
+        $sql = "select * from messages WHERE user_id IN (" . implode(', ',$userids) .")";
 
-        $result = $db->query($sql);
+
+        $result2 = $db->query($sql);
         $messages = array();
 
-        while($row = $result->fetch_object()) {
+        while($row = $result2->fetch_object()) {
 
 
 
             $messages[] = array('user' => $row->user_id, 'message'=> $row->id,'date'=> $row->created_at);
         }
-        $sortedMessages = array_multisort( array_column($messages, "date"), SORT_DESC, $messages );
+        array_multisort( array_column($messages, "date"), SORT_DESC, $messages );
+        print_r($messages);
+        //TODO Add formatting
 
     }
 }
